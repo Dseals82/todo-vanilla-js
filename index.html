@@ -15,26 +15,17 @@
             <h1 class="crud-header">Todo List</h1> <i class="fas fa-pen"></i>
         </div>
         
-        <form action="javascript:void(0)" method="post" class="form-container" onsubmit="add()">
+        <form action="javascript:void(0)" method="post" class="form-container" onsubmit="addTask()">
             <div class="form-group">
                 <label class="form-label" for="Name">Todo:</label>
-                <input type="search" class="name">
+                <input required type="search" class="todo-input">
             </div>
             <input type="submit" value="Add Todo" class="form-btn btn-primary">    
         </form>
-        <article class="todo-list">
+        <article class="todo-list-section">
             <div class="todo-list-container">
                 <ul class="todo-list">
-                    <div class="list-item-group">
-                        <input class="list-item-checkbox" type="checkbox"><li class="list-item">one thing to do!</li><i class="fas fa-edit"></i><i class="fas fa-trash"></i>
-                    </div>
-                    <div class="list-item-group">
-                        <input class="list-item-checkbox" type="checkbox"><li class="list-item">one thing to do!</li><i class="fas fa-edit"></i><i class="fas fa-trash"></i>
-                    </div>
-                    <div class="list-item-group">
-                        <input class="list-item-checkbox" type="checkbox"><li class="list-item">one thing to do!</li><i class="fas fa-edit"></i><i class="fas fa-trash"></i>
-                    </div>
-                    
+                    <p class="red-p">No Tasks</p>
                 </ul>
             </div>
         </article>
