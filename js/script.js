@@ -34,12 +34,19 @@
     };
 
     const editTask = (item) => {
-        document.querySelector(".fa-save").style.display = 'flex';
-        document.querySelector(".fa-edit").style.display = 'none';
-        document.querySelector(".fa-trash").style.display = 'none';
-        document.querySelector(".list-item-checkbox").style.display = 'none';
+        console.log('edit: ', )
+        //save
+        item.parentNode.children[2].style.display = 'flex';
+        //edit
+        item.parentNode.children[3].style.display = 'none';
+        //delete
+        item.parentNode.children[4].style.display = 'none';
+        //checkbox
+        item.parentNode.children[4].style.display = 'none';
+        //li with "todo" tex
         item.parentNode.children[1].toggleAttribute("contentEditable");
         item.parentNode.children[1].focus();
+
         taskDb.forEach((taskItem) => {
             if(taskItem.id == item.parentNode.id){
                return taskItem.todo = item.parentNode.children[1].innerText
@@ -49,11 +56,15 @@
     };
 
     const saveEdit = (item) => {
-        document.querySelector(".list-item-checkbox").style.display = 'flex';
+        //checkbox
+        item.parentNode.children[4].style.display = 'flex';
         item.parentNode.children[1].toggleAttribute("contentEditable");
-        document.querySelector(".fa-save").style.display = 'none';
-        document.querySelector(".fa-edit").style.display = 'flex';
-        document.querySelector(".fa-trash").style.display = 'flex';
+        //save
+        item.parentNode.children[2].style.display = 'none';
+        //edit
+        item.parentNode.children[3].style.display = 'flex';
+        //delete
+        item.parentNode.children[4].style.display = 'flex';
     }
 
     const deleteTask = (item) => {
