@@ -8,7 +8,7 @@
             html += `
             <div class="crud-group ">
                 <div class="list-item-group" id="${task.id.toString()}">
-                    <input onchange="checkBoxComplete(this) " class="list-item-checkbox" name="checkbox" type="checkbox"><li class="list-item">${task.todo}</li><i onclick="saveEdit(this)" class="fas fa-save"></i><i onclick="editTask(this)" class="fas fa-edit"></i><i onclick="deleteTask(this)" aria-label="Close" class="fas fa-trash"></i>
+                    <input ${task.checked ? "checked" : ""} onchange="checkBoxComplete(this) " class="list-item-checkbox" name="checkbox" type="checkbox"><li class="list-item ${task.checked ? "completedItem" : ""}">${task.todo}</li><i onclick="saveEdit(this)" class="fas fa-save"></i><i onclick="editTask(this)" class="fas fa-edit"></i><i onclick="deleteTask(this)" aria-label="Close" class="fas fa-trash"></i>
                 </div>
             </div> 
             `;  
@@ -24,7 +24,7 @@
             return
         };
         count++;
-        taskDb.push({todo: inputVal, id:count});
+        taskDb.push({todo: inputVal, id:count, checked:false});
         document.querySelector(".todo-input").value = '';
         displayAllTasks(taskDb);
     };
@@ -87,8 +87,17 @@
         };
     };
 
+    //Keep track of checkbox state
     const checkBoxComplete = (checkbox) => {
-        console.log(checkbox.parentNode.children[1].classList.toggle("completedItem"))
-  
-    }
+        //loop through db to see if taskItems id matches .this.parentNode.id
+        //if id matches, taskItem.checked = true if false, false if true
+        //check if taskItem.checked is true, if true add completedItem class or if false remove it
+        taskDb.forEach((taskItem) => {
+            if(taskItem.id == checkbox.parentNode.id){
+                taskItem.checked = !taskItem.checked   
+                taskItem.checked ? checkbox.parentNode.children[1].classList.add('completedItem') : checkbox.parentNode.children[1].classList.remove('completedItem') 
+            };            
+        });
+    };
 
+    

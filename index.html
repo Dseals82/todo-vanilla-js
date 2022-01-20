@@ -14,7 +14,7 @@
         <div class="header-container">
             <h1 class="crud-header">Todo List</h1> <i class="fas fa-pen"></i>
         </div>
-        <form action="javascript:void(0)" method="post" class="form-container" onsubmit="addTask()">
+        <form action="javascript:void(0)" method="post" class="form-container" onsubmit="addTask(e => e.preventDefault())">
             <div class="form-group">
                 <label class="form-label" for="Name">Todo:</label>
                 <input required type="search" class="todo-input">
