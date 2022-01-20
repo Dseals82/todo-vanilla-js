@@ -14,7 +14,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .header-container {
@@ -44,6 +43,7 @@ body {
 .form-btn, .name {
     margin: 10px;
 }
+
 .todo-input {
     flex: 11;
     padding: 0.5rem;
@@ -54,6 +54,7 @@ body {
     font-weight: bold;
     margin: 0 0 15px 10px;
 }
+
 .form-btn {
     padding: 0.5rem;
     font-size: 15px;
@@ -73,7 +74,6 @@ body {
 .btn-primary {
     background-color: blue;
 }
-
 
 .btn-primary:hover {
     background-color: rgb(42, 42, 255);
@@ -125,7 +125,6 @@ body {
     background-color: #eee;
     margin-left: 1rem;
     cursor: pointer;
-
 }
 
 .fa-pen {
@@ -154,7 +153,6 @@ body {
 .fa-trash:hover {
     color: rgb(255, 77, 77);
 }
-
 
 .todo-list-container {
     padding: 30px;
@@ -186,7 +184,6 @@ body {
     color: rgb(247, 138, 66);  
 }
 
-
 @media only screen and (max-width:680px) {
     .todo-list-container {
         width: 285px;
@@ -196,6 +193,5 @@ body {
     }
     .fa-edit {
         margin-right: 5px;
-    }
-    
+    }   
 }
