@@ -34,7 +34,6 @@
     };
 
     const editTask = (item) => {
-        console.log('edit: ', )
         //save
         item.parentNode.children[2].style.display = 'flex';
         //edit
@@ -42,22 +41,24 @@
         //delete
         item.parentNode.children[4].style.display = 'none';
         //checkbox
-        item.parentNode.children[4].style.display = 'none';
+        item.parentNode.children[0].style.display = 'none';
         //li with "todo" tex
         item.parentNode.children[1].toggleAttribute("contentEditable");
         item.parentNode.children[1].focus();
 
-        taskDb.forEach((taskItem) => {
-            if(taskItem.id == item.parentNode.id){
-               return taskItem.todo = item.parentNode.children[1].innerText
-            };  
-        });
-        console.log(taskDb)
+        // taskDb.forEach((taskItem) => {
+        //     console.log('this id: in edit', item.parentNode.id)
+        //     console.log('second:' ,taskItem.id)
+        //     if(taskItem.id == item.parentNode.id){
+        //         taskItem.todo = item.parentNode.children[1].innerText
+        //     };  
+        // });
+        
     };
 
     const saveEdit = (item) => {
         //checkbox
-        item.parentNode.children[4].style.display = 'flex';
+        item.parentNode.children[0].style.display = 'flex';
         item.parentNode.children[1].toggleAttribute("contentEditable");
         //save
         item.parentNode.children[2].style.display = 'none';
@@ -65,18 +66,34 @@
         item.parentNode.children[3].style.display = 'flex';
         //delete
         item.parentNode.children[4].style.display = 'flex';
+        taskDb.forEach((taskItem) => {
+            console.log('this id: in edit', item.parentNode.id)
+            console.log('second:' ,taskItem.id)
+            if(taskItem.id == item.parentNode.id){
+                taskItem.todo = item.parentNode.children[1].innerText
+            };  
+        });
+        console.log(taskDb)
     }
 
     const deleteTask = (item) => {
-        
-        let removeIndex = taskDb.map((item) => {
-             console.log('help:',item.id)
-        }).indexOf(item.parentNode.id);
-        taskDb.splice(removeIndex,1);
-            
+        //grab the item id of .this
+        let itemId = item.parentNode.id;
+        //loop through array
+        //check to see if id of taskDb's object is equal to .this id
+        //if both ids are equal, grab the index of that object that splice from array of objects
+        for (i=taskDb.length- 1; i >= 0; i--){
+            let idOfDbObject = taskDb[i].id;
+            if(idOfDbObject == itemId){
+                taskDb.splice(i,1)
+            }
+            console.log('result',taskDb)
+        }
+
+
+         //remove item from UI   
         item.parentNode.remove();
         alertIfNoTasksLeft(taskDb); 
-        
     };
     
     const alertIfNoTasksLeft= (data) => {
