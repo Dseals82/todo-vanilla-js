@@ -8,11 +8,8 @@
             html += `
             <div class="crud-group ">
                 <div class="list-item-group" id="${task.id.toString()}">
-                    <input class="list-item-checkbox" type="checkbox"><li class="list-item">${task.todo}</li><i onclick="saveEdit(this)" class="fas fa-save"></i><i onclick="editTask(this)" class="fas fa-edit"></i><i onclick="deleteTask(this)" aria-label="Close" class="fas fa-trash"></i>
+                    <input onchange="checkBoxComplete(this) " class="list-item-checkbox" name="checkbox" type="checkbox"><li class="list-item">${task.todo}</li><i onclick="saveEdit(this)" class="fas fa-save"></i><i onclick="editTask(this)" class="fas fa-edit"></i><i onclick="deleteTask(this)" aria-label="Close" class="fas fa-trash"></i>
                 </div>
-                <form id="save-form" role="aria-hidden" action="javascript:void(0)" method="post"  class="list-item-group save-form" onsubmit="saveEdit(this,${task.id.toString()})">
-                    <li id="save-form-value" contentEditable="true" class="list-item">${task.todo}</li><input class="form-btn btn-success" type="submit" value="Save Edit">
-                </form>
             </div> 
             `;  
         });
@@ -90,4 +87,8 @@
         };
     };
 
+    const checkBoxComplete = (checkbox) => {
+        console.log(checkbox.parentNode.children[1].classList.toggle("completedItem"))
+  
+    }
 

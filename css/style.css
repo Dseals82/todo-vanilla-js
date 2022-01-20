@@ -184,6 +184,12 @@ body {
     color: rgb(247, 138, 66);  
 }
 
+.completedItem {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+}
+
 @media only screen and (max-width:680px) {
     .todo-list-container {
         width: 285px;
