@@ -2,7 +2,6 @@
     const taskDb = [];
     let count = 0;
 
-    
     const displayAllTasks = (allTasks) => {
         let html = "";
         allTasks.forEach((task) => {
@@ -15,8 +14,7 @@
                     <li id="save-form-value" contentEditable="true" class="list-item">${task.todo}</li><input class="form-btn btn-success" type="submit" value="Save Edit">
                 </form>
             </div> 
-            `;
-            
+            `;  
         });
         document.querySelector(".todo-list").innerHTML = html;   
     };
@@ -26,6 +24,7 @@
         //backup "todo" main input authentication, in case the required input attr fails
         if(inputVal.length < 0){
             document.querySelector(".todo-input").classList.toggle('empty-input');
+            return
         };
         count++;
         taskDb.push({todo: inputVal, id:count});
@@ -45,15 +44,6 @@
         //li with "todo" tex
         item.parentNode.children[1].toggleAttribute("contentEditable");
         item.parentNode.children[1].focus();
-
-        // taskDb.forEach((taskItem) => {
-        //     console.log('this id: in edit', item.parentNode.id)
-        //     console.log('second:' ,taskItem.id)
-        //     if(taskItem.id == item.parentNode.id){
-        //         taskItem.todo = item.parentNode.children[1].innerText
-        //     };  
-        // });
-        
     };
 
     const saveEdit = (item) => {
@@ -67,14 +57,11 @@
         //delete
         item.parentNode.children[4].style.display = 'flex';
         taskDb.forEach((taskItem) => {
-            console.log('this id: in edit', item.parentNode.id)
-            console.log('second:' ,taskItem.id)
             if(taskItem.id == item.parentNode.id){
                 taskItem.todo = item.parentNode.children[1].innerText
             };  
         });
-        console.log(taskDb)
-    }
+    };
 
     const deleteTask = (item) => {
         //grab the item id of .this
@@ -85,12 +72,9 @@
         for (i=taskDb.length- 1; i >= 0; i--){
             let idOfDbObject = taskDb[i].id;
             if(idOfDbObject == itemId){
-                taskDb.splice(i,1)
-            }
-            console.log('result',taskDb)
-        }
-
-
+                taskDb.splice(i,1);
+            };
+        };
          //remove item from UI   
         item.parentNode.remove();
         alertIfNoTasksLeft(taskDb); 
@@ -103,10 +87,7 @@
                 <p class="red-p" >No items left</p>
             `;
             document.querySelector(".todo-list").innerHTML = html;     
-        }
+        };
     };
-
-    
-console.log(taskDb)
 
 
